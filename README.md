@@ -29,7 +29,7 @@ Please use Java 8 as a programming language. No Framework is needed for this exe
 1. Please clone the repository.
 2. Create a branch off master 
 3. Push this branch to the repository.
-4. Run mvn clean install via your terminal.
+4. Create a maven project & Run mvn clean install via your terminal.
 5. Open the project in your IDE of choice.
 6. Read the requirements from the Requirements section. Please only read one iteration at a time starting with iteration 1.
 7. Please think about how you will approach this problem in code for a few minutes without coding.
