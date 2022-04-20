@@ -1,7 +1,12 @@
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import com.kata.wordcount.CommonUtils;
@@ -66,5 +71,13 @@ public class ApplicationTest {
 	@Test
 	public void sentenceWithStopWords2() throws IOException {
 		assertEquals(CommonUtils.getNumberOfWords("John says hello"), 2);
+	}
+	
+	@Test
+	public void sentenceFromFile() throws IOException {
+		Path path = Paths.get("src/main/resources/mytext.txt");
+		List<String> words = Files.readAllLines(path);
+		
+		assertEquals(CommonUtils.getNumberOfWords(StringUtils.join(words, " ")), 4);
 	}
 }
