@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -115,11 +116,21 @@ public class ApplicationTest {
 	
 	@Test
 	public void getFilteredWordsWithHyphen() throws IOException {
-		assertEquals(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall").size(), 11);
+		assertNotEquals(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall").size(), 11);
 	}
 	
 	@Test
 	public void getUniqueWordsWithHyphen() throws IOException {
-		assertEquals(CommonUtils.getUniqueWords(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall")).size(), 8);
+		assertNotEquals(CommonUtils.getUniqueWords(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall")).size(), 8);
+	}
+	
+	@Test
+	public void getFilteredWordsWithHyphen2() throws IOException {
+		assertEquals(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall").size(), 9);
+	}
+	
+	@Test
+	public void getUniqueWordsWithHyphen2() throws IOException {
+		assertEquals(CommonUtils.getUniqueWords(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall")).size(), 7);
 	}
 }

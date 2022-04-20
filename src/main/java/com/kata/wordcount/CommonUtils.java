@@ -73,7 +73,7 @@ public class CommonUtils {
 						
 			String trimLine = line.replaceAll("\\s+", " ");
 			trimLine = trimLine.replace(".", "");
-			trimLine = trimLine.replace("-", " ");
+			trimLine = trimLine.replace("-", "");
 			
 			return trimLine.split(" ");
 		}
