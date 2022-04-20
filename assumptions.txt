@@ -1,1 +1,4 @@
-- only alphabets are entered
+- stopwords.txt is case-sensitive
+- only to cater for small file
+- no whitespace as a word in the txt file
+- stopwords.txt is available

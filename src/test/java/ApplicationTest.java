@@ -1,48 +1,70 @@
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
-import com.kata.wordcount.Application;
+import com.kata.wordcount.CommonUtils;
 
 public class ApplicationTest {
 
 	@Test
-	public void numberOfWordsAreCorrect() {
-		assertEquals(Application.getNumberOfWords("This is a sentence"), 4);
+	public void numberOfWordsAreCorrect() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("This is a sentence"), 4);
 	}
 	
 	@Test
-	public void aWord() {
-		assertEquals(Application.getNumberOfWords("Hello"), 1);
+	public void aWord() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("Hello"), 1);
 	}
 	
 	@Test
-	public void noWordsEntered() {
-		assertEquals(Application.getNumberOfWords(""), 0);
+	public void noWordsEntered() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords(""), 0);
 	}
 	
 	@Test
-	public void nullValueEntered() {
-		assertEquals(Application.getNumberOfWords(null), 0);
+	public void nullValueEntered() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords(null), 0);
 	}
 	
 	@Test
-	public void whiteSpaceValueEntered() {
-		assertEquals(Application.getNumberOfWords("   "), 0);
+	public void whiteSpaceValueEntered() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("   "), 0);
 	}
 	
 	@Test
-	public void sentenceWithWhiteSpaceValueEntered() {
-		assertEquals(Application.getNumberOfWords("This is    gap   sentence"), 4);
+	public void sentenceWithWhiteSpaceValueEntered() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("This is    gap   sentence"), 4);
 	}
 	
 	@Test
-	public void initialSentenceWithWhiteSpaceValueEntered() {
-		assertEquals(Application.getNumberOfWords("   This is    gap   sentence"), 4);
+	public void initialSentenceWithWhiteSpaceValueEntered() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("   This is    gap   sentence"), 4);
 	}
 	
 	@Test
-	public void trailingSentenceWithWhiteSpaceValueEntered() {
-		assertEquals(Application.getNumberOfWords("This is    gap   sentence    "), 4);
+	public void trailingSentenceWithWhiteSpaceValueEntered() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("This is    gap   sentence    "), 4);
+	}
+	
+	@Test
+	public void wordsWithNumerics() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("This is sentence with numeric 123"), 5);
+	}
+	
+	@Test
+	public void wordsWithAlphaNumerics() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("This is sentence with ab1c alphanumeric"), 5);
+	}
+	
+	@Test
+	public void sentenceWithStopWords() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("Mary had a little lamb"), 4);
+	}
+	
+	@Test
+	public void sentenceWithStopWords2() throws IOException {
+		assertEquals(CommonUtils.getNumberOfWords("John says hello"), 2);
 	}
 }
