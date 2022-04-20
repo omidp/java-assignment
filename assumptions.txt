@@ -3,3 +3,4 @@
 - no whitespace as a word in the txt file
 - stopwords.txt is available
 - mytext.txt is available
+- hyphen is acceptable as a word

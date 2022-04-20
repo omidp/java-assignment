@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -78,6 +79,47 @@ public class ApplicationTest {
 		Path path = Paths.get("src/main/resources/mytext.txt");
 		List<String> words = Files.readAllLines(path);
 		
-		assertEquals(CommonUtils.getNumberOfWords(StringUtils.join(words, " ")), 4);
+		assertEquals(CommonUtils.getNumberOfWords(StringUtils.join(words, " ")), 7);
+	}
+	
+	@Test
+	public void getFilteredWords() throws IOException {
+		assertEquals(CommonUtils.getFilteredWords("Mary sat on a wall. Mary had a great fall").size(), 7);
+	}
+	
+	@Test
+	public void getFilteredWords_null() throws IOException {
+		assertEquals(CommonUtils.getFilteredWords(null).size(), 0);
+	}
+	
+	@Test
+	public void getFilteredWords_whitespace() throws IOException {
+		assertEquals(CommonUtils.getFilteredWords("   ").size(), 0);
+	}
+	
+	@Test
+	public void getUniqueWords() throws IOException {
+		assertEquals(CommonUtils.getUniqueWords(CommonUtils.getFilteredWords("Mary sat on a wall. Mary had a great fall")).size(), 6);
+	}
+	
+	
+	@Test
+	public void getUniqueWords_null() throws IOException {
+		assertEquals(CommonUtils.getUniqueWords(null).size(), 0);
+	}
+	
+	@Test
+	public void getUniqueWords_whitespace() throws IOException {
+		assertEquals(CommonUtils.getUniqueWords(new ArrayList<String>()).size(), 0);
+	}
+	
+	@Test
+	public void getFilteredWordsWithHyphen() throws IOException {
+		assertEquals(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall").size(), 11);
+	}
+	
+	@Test
+	public void getUniqueWordsWithHyphen() throws IOException {
+		assertEquals(CommonUtils.getUniqueWords(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall")).size(), 8);
 	}
 }
