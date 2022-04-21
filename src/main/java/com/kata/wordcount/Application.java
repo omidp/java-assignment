@@ -11,6 +11,8 @@ import org.apache.commons.lang3.StringUtils;
 
 public class Application {
 	public static void main(String[] args) throws IOException {
+		boolean isIndex = true;
+		
 		Path path = Paths.get("src/main/resources/mytext.txt");
 		List<String> words = Files.readAllLines(path);
 
@@ -20,5 +22,12 @@ public class Application {
 				
 		System.out.println("Number of words: " + filteredWords.size() + ", unique: " + uniqueWords.size() 
 		+ "; average word length: " + CommonUtils.getAverageWordLength(filteredWords) + " characters");
+		
+		if(isIndex) {
+			System.out.println("Index: ");
+			for(String str : filteredWords) {
+				System.out.println(str);
+			}
+		}
 	}
 }
