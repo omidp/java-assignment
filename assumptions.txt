@@ -4,3 +4,4 @@
 - stopwords.txt is available
 - mytext.txt is available
 - hyphen is acceptable as a word
+- dictionary.txt is not empty(iteration 8)
