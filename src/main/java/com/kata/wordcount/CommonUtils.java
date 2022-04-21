@@ -80,4 +80,17 @@ public class CommonUtils {
 		
 		return new String[0];
 	}
+
+	public static double getAverageWordLength(List<String> filteredWords) {
+		if(filteredWords != null && filteredWords.size() > 0) {
+			double total = 0;
+			for(String str : filteredWords) {
+				total += str.length();
+			}
+			
+			return total / filteredWords.size();
+		}
+			
+		return 0;
+	}
 }

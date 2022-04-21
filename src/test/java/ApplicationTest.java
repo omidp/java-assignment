@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -132,5 +133,30 @@ public class ApplicationTest {
 	@Test
 	public void getUniqueWordsWithHyphen2() throws IOException {
 		assertEquals(CommonUtils.getUniqueWords(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall")).size(), 7);
+	}
+	
+	@Test
+	public void getAverageWordLength() throws IOException {
+		assertEquals(CommonUtils.getAverageWordLength(CommonUtils.getFilteredWords("Mary sat on a wall. Mary had a great fall")), 3.0, 0);
+	}
+	
+	@Test
+	public void getAverageWordLength2() throws IOException {
+		assertEquals(CommonUtils.getAverageWordLength(CommonUtils.getFilteredWords("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall")), 5.0, 0);
+	}
+	
+	@Test
+	public void getAverageWordLength_null() throws IOException {
+		assertEquals(CommonUtils.getAverageWordLength(null), 0.0, 0);
+	}
+	
+	@Test
+	public void getAverageWordLength_empty_list() throws IOException {
+		assertEquals(CommonUtils.getAverageWordLength(new ArrayList<>()), 0.0, 0);
+	}
+	
+	@Test
+	public void getAverageWordLength_list_empty_words() throws IOException {
+		assertEquals(CommonUtils.getAverageWordLength(Arrays.asList("","")), 0.0, 0);
 	}
 }

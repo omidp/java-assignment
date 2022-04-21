@@ -18,6 +18,7 @@ public class Application {
 		List<String> uniqueWords = CommonUtils.getUniqueWords(filteredWords);
 		
 				
-		System.out.println("Number of words: " + filteredWords.size() + ", unique: " + uniqueWords.size());
+		System.out.println("Number of words: " + filteredWords.size() + ", unique: " + uniqueWords.size() 
+		+ "; average word length: " + CommonUtils.getAverageWordLength(filteredWords) + " characters");
 	}
 }
