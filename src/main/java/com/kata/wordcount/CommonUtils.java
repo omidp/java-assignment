@@ -5,8 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -92,5 +94,28 @@ public class CommonUtils {
 		}
 			
 		return 0;
+	}
+
+	public static Map<String, Object> markUnknownWords(List<String> filteredWords, List<String> dictWords) {
+		Map<String, Object> map = new HashMap<>();
+		List<String> updatedList = new ArrayList<>();
+		
+		if(filteredWords != null && filteredWords.size() > 0) {
+			int count = 0;
+			for(String str : filteredWords) {
+				if(!dictWords.contains(str)) {
+					str += "*";
+					count++;
+				}
+				
+				updatedList.add(str);
+			}
+			
+			map.put("filteredWords", updatedList);
+			map.put("count", Integer.valueOf(count));
+			return map;
+		}
+		
+		return map;
 	}
 }
